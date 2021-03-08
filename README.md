@@ -1,5 +1,5 @@
 # bicep-policy-examples
-Collection of Azure Policy examples using Bicep by @jesseloudon
+Collection of Azure Policy examples using Bicep :muscle: by @jesseloudon
 
 Get in touch :octocat:
 
