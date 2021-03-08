@@ -24,8 +24,3 @@ jobs:
     # List of .bicep files to build, delimited by a space. eg) file1 file2 file3 ...
         #files: '**/*.bicep'
         files: ./deployifnotexists-policy-with-initiative-and-assignment/main.bicep
-    - name: Build Result
-      shell: bash
-      run: |
-        shopt -s globstar
-        ls -altR **/sample*.*
