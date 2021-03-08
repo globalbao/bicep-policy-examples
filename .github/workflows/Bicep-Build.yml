@@ -1,0 +1,30 @@
+name: Bicep-Build
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  schedule:
+  - cron: "0 0 * * *" #at the end of every day
+    
+jobs:
+
+  Bicep-Build:
+    env:
+        ARM_CLIENT_ID: ${{ secrets.az_client_id }}
+        ARM_CLIENT_SECRET: ${{ secrets.az_client_secret }}
+        ARM_SUBSCRIPTION_ID: ${{ secrets.az_subscription_id }}
+        ARM_TENANT_ID: ${{ secrets.az_tenant_id }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Bicep Build
+      uses: aliencube/bicep-build-actions@v0.1
+      with:
+    # List of .bicep files to build, delimited by a space. eg) file1 file2 file3 ...
+        files: '**/*.bicep'
+    - name: Build Result
+      shell: bash
+      run: |
+        shopt -s globstar
+        ls -altR **/sample*.*
