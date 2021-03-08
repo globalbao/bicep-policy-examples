@@ -22,7 +22,8 @@ jobs:
       uses: aliencube/bicep-build-actions@v0.1
       with:
     # List of .bicep files to build, delimited by a space. eg) file1 file2 file3 ...
-        files: '**/*.bicep'
+        #files: '**/*.bicep'
+        files: ./deployifnotexists-policy-with-initiative-and-assignment/main.bicep
     - name: Build Result
       shell: bash
       run: |
