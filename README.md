@@ -1,4 +1,6 @@
 # bicep-policy-examples
+[![Bicep-Build](https://github.com/globalbao/bicep-policy-examples/actions/workflows/Bicep-Build.yml/badge.svg)](https://github.com/globalbao/bicep-policy-examples/actions/workflows/Bicep-Build.yml)
+
 Collection of Azure Policy examples using Bicep :muscle: by @jesseloudon
 
 Get in touch :octocat:
