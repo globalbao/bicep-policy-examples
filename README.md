@@ -13,3 +13,5 @@ Get in touch :octocat:
 Learning resources :books:
 * [https://github.com/Azure/bicep](https://github.com/Azure/bicep)
 * [https://docs.microsoft.com/en-us/azure/governance/policy/overview](https://docs.microsoft.com/en-us/azure/governance/policy/overview)
+
+*Icon Author* [monkik](https://www.flaticon.com/authors/monkik)
