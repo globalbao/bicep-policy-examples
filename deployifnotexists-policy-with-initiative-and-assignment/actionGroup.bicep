@@ -1,15 +1,12 @@
-// DEPLOYMENT SCOPE
 targetScope = 'resourceGroup'
 
 // PARAMETERS
-param actionGroupName string = 'AzureSpringCleanAG'
-param actionGroupEnabled bool = true
-param actionGroupShortName string = 'azspgcln'
-param actionGroupEmailName string = 'jloudon'
-param actionGroupEmail string = 'jesse.loudon@lab3.com.au'
-param actionGroupAlertSchema bool = true
-
-// VARIABLES
+param actionGroupName string
+param actionGroupEnabled bool
+param actionGroupShortName string
+param actionGroupEmailName string
+param actionGroupEmail string
+param actionGroupAlertSchema bool
 
 // OUTPUTS
 output actionGroupId string = actionGroup.id
@@ -19,7 +16,7 @@ output actionGroupName string = actionGroup.name
 resource actionGroup 'microsoft.insights/actionGroups@2019-06-01' = {
   location: 'global'
   name: actionGroupName
-  properties:{
+  properties: {
     enabled: actionGroupEnabled
     groupShortName: actionGroupShortName
     emailReceivers: [
