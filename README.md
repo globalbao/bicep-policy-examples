@@ -1,7 +1,8 @@
-# bicep-policy-examples
+# Bicep-Policy-Examples
 [![Bicep-Build](https://github.com/globalbao/bicep-policy-examples/actions/workflows/Bicep-Build.yml/badge.svg)](https://github.com/globalbao/bicep-policy-examples/actions/workflows/Bicep-Build.yml)
 
 Collection of Azure Policy examples using Bicep :muscle: by @jesseloudon
+> *Bicep + Policy icons are from Microsoft*
 
 Get in touch :octocat:
 
@@ -13,8 +14,6 @@ Get in touch :octocat:
 Learning resources :books:
 * [https://github.com/Azure/bicep](https://github.com/Azure/bicep)
 * [https://docs.microsoft.com/en-us/azure/governance/policy/overview](https://docs.microsoft.com/en-us/azure/governance/policy/overview)
-
-*Bicep Icon Author* [monkik](https://www.flaticon.com/authors/monkik)
 
 ## Blogs that might interest you :pencil:
 
