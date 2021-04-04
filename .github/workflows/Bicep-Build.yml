@@ -21,4 +21,4 @@ jobs:
     - name: Bicep Build
       uses: aliencube/bicep-build-actions@v0.1
       with:
-        files: '**/*.bicep'
+        files: ./azmonitor-agent-and-dcr-association/main.bicep
