@@ -23,4 +23,4 @@ jobs:
       with:
     # List of .bicep files to build, delimited by a space. eg) file1 file2 file3 ...
         #files: '**/*.bicep'
-        files: ./deployifnotexists-policy-with-initiative-and-assignment/main.bicep
+        files: ./azmonitor-metricalert-and-actiongroup/main.bicep ./azmonitor-agent-and-dcr-association/main.bicep
