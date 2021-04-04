@@ -18,7 +18,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Bicep Build
+    - name: Bicep Build 1
       uses: aliencube/bicep-build-actions@v0.1
       with:
         files: ./azmonitor-agent-and-dcr-association/main.bicep
+    - name: Bicep Build 2
+      uses: aliencube/bicep-build-actions@v0.1
+      with:
+        files: ./azmonitor-metricalert-and-actiongroup/main.bicep
