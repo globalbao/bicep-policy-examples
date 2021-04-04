@@ -21,6 +21,4 @@ jobs:
     - name: Bicep Build
       uses: aliencube/bicep-build-actions@v0.1
       with:
-    # List of .bicep files to build, delimited by a space. eg) file1 file2 file3 ...
-        #files: '**/*.bicep'
-        files: ./azmonitor-metricalert-and-actiongroup/main.bicep ./azmonitor-agent-and-dcr-association/main.bicep
+        files: '**/*.bicep'
