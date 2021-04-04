@@ -1,6 +1,7 @@
 # DeployIfNotExists (DINE) Azure Monitor Metric Alert (v2) and Action Group
 
 ### Deployment Summary
+
 Resources Deployed | Bicep File
 :----------|:-----
 1x Resource Group | main.bicep
@@ -11,6 +12,7 @@ Resources Deployed | Bicep File
 ------------------------
 
 ### Input Summary
+
 Parameter | Type | Default Value
 :----------|:-----|:--------
 resourceGroupName | string | 'BicepExampleRG'
@@ -40,14 +42,21 @@ assignmentEnforcementMode | string | 'Default'
 -----------------------------
 
 ### Authored & Tested with
+
 * [azure-cli](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) version 2.20.0
 * bicep cli version 0.3.1 (d0f5c9b164)
 * [bicep](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) 0.3.1 vscode extension
 
 ### Example Deployment Steps
+
 ```
-az login
+# optional step to view the JSON/ARM template
 az bicep build -f ./main.bicep
+
+# required steps
+az login
 az deployment sub create -f ./main.bicep -l australiaeast
+
+# optional step to trigger a subscription-level policy compliance scan 
 az policy state trigger-scan
 ```
