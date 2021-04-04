@@ -32,8 +32,11 @@ dcrResourceID | string |
 ```
 # optional step to view the JSON/ARM template
 az bicep build -f ./main.bicep
+
+# required steps
 az login
 az deployment sub create -f ./main.bicep -l australiaeast
+
 # optional step to trigger a subscription-level policy compliance scan 
 az policy state trigger-scan
 ```
