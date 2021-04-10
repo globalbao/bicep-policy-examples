@@ -10,38 +10,38 @@ jobs:
   Bicep-CD-DEVTEST:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: Azure Login
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS_DEVTEST }}
-    - uses: actions/checkout@v2
     - name: Bicep CD 1
       uses: azure/CLI@v1
       with:
         inlineScript: |
-          az deployment sub create -f ./azmonitor-agent-and-dcr-association/main.bicep -l australiasoutheast --parameters assignmentIdentityLocation=australiasoutheast dcrResourceID=123456789
+          az deployment sub create -f ./azmonitor-agent-and-dcr-association/main.bicep -l australiaeast --parameters assignmentIdentityLocation=australiaeast dcrResourceID=123456789
     - name: Bicep CD 2
       uses: azure/CLI@v1
       with:
         inlineScript: |
-          az deployment sub create -f ./azmonitor-metricalert-and-actiongroup/main.bicep -l australiasoutheast
+          az deployment sub create -f ./azmonitor-metricalert-and-actiongroup/main.bicep -l australiaeast
 
   Bicep-CD-NONPROD:
     needs: Bicep-CD-DEVTEST
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: Azure Login
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS_NONPROD }}
-    - uses: actions/checkout@v2
     - name: Bicep CD 1
       uses: azure/CLI@v1
       with:
         inlineScript: |
-          az deployment sub create -f ./azmonitor-agent-and-dcr-association/main.bicep -l australiasoutheast --parameters assignmentIdentityLocation=australiasoutheast dcrResourceID=123456789
+          az deployment sub create -f ./azmonitor-agent-and-dcr-association/main.bicep -l australiaeast --parameters assignmentIdentityLocation=australiaeast dcrResourceID=123456789
     - name: Bicep CD 2
       uses: azure/CLI@v1
       with:
         inlineScript: |
-          az deployment sub create -f ./azmonitor-metricalert-and-actiongroup/main.bicep -l australiasoutheast
+          az deployment sub create -f ./azmonitor-metricalert-and-actiongroup/main.bicep -l australiaeast
