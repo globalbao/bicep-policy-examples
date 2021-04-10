@@ -1,0 +1,23 @@
+name: Bicep-CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+  - cron: "0 0 * * *" #at the end of every day
+    
+jobs:
+
+  Bicep-CI:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Bicep CI 1
+      uses: aliencube/bicep-build-actions@v0.1
+      with:
+        files: ./azmonitor-agent-and-dcr-association/main.bicep
+    - name: Bicep CI 2
+      uses: aliencube/bicep-build-actions@v0.1
+      with:
+        files: ./azmonitor-metricalert-and-actiongroup/main.bicep
