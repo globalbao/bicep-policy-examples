@@ -13,7 +13,7 @@ jobs:
     - name: Azure Login
       uses: azure/login@v1
       with:
-        credentials: ${{ secrets.AZURE_CREDENTIALS_DEVTEST }}
+        creds: ${{ secrets.AZURE_CREDENTIALS_DEVTEST }}
     - uses: actions/checkout@v2
     - name: Bicep CD 1
       uses: azure/CLI@v1
@@ -33,7 +33,7 @@ jobs:
     - name: Azure Login
       uses: azure/login@v1
       with:
-        credentials: ${{ secrets.AZURE_CREDENTIALS_NONPROD }}
+        creds: ${{ secrets.AZURE_CREDENTIALS_NONPROD }}
     - uses: actions/checkout@v2
     - name: Bicep CD 1
       uses: azure/CLI@v1
