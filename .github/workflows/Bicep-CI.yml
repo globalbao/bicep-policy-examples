@@ -2,8 +2,12 @@ name: Bicep-CI
 on:
   push:
     branches: [ main ]
+    paths:
+    - '**.bicep'
   pull_request:
     branches: [ main ]
+    paths:
+    - '**.bicep'
   schedule:
   - cron: "0 0 * * *" #at the end of every day
     
