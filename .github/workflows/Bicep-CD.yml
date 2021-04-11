@@ -27,7 +27,7 @@ jobs:
       uses: azure/CLI@v1
       with:
         inlineScript: |
-          az deployment sub create -n devtest-bicep-cd1 -f ./azmonitor-metricalert-and-actiongroup/main.bicep -l australiaeast -o none
+          az deployment sub create -n devtest-bicep-cd2 -f ./azmonitor-metricalert-and-actiongroup/main.bicep -l australiaeast -o none
 
   NONPROD-BICEP-CD:
     needs: DEVTEST-BICEP-CD
