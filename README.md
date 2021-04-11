@@ -1,6 +1,6 @@
 ![RepoLogo](BicepPolicyExamples.png "Bicep Policy Examples")
 
-[![Bicep-CI](https://github.com/globalbao/bicep-policy-examples/actions/workflows/Bicep-CI.yml/badge.svg)](https://github.com/globalbao/bicep-policy-examples/actions/workflows/Bicep-CI.yml)
+[![Bicep-CI](https://github.com/globalbao/bicep-policy-examples/actions/workflows/Bicep-CI.yml/badge.svg)](https://github.com/globalbao/bicep-policy-examples/actions/workflows/Bicep-CI.yml) [![Bicep-CD](https://github.com/globalbao/bicep-policy-examples/actions/workflows/Bicep-CD.yml/badge.svg)](https://github.com/globalbao/bicep-policy-examples/actions/workflows/Bicep-CD.yml)
 
 Collection of Azure Policy examples using Bicep :muscle: by @jesseloudon
 > *Bicep + Policy icons are from Microsoft*
