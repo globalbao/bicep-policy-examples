@@ -19,12 +19,12 @@ jobs:
       uses: azure/CLI@v1
       with:
         inlineScript: |
-          az deployment sub create -f ./azmonitor-agent-and-dcr-association/main.bicep -l australiaeast --parameters assignmentIdentityLocation=australiaeast dcrResourceID=123456789
+          az deployment sub create -f ./azmonitor-agent-and-dcr-association/main.bicep -l australiaeast -p assignmentIdentityLocation=australiaeast dcrResourceID=123456789 -o none
     - name: Bicep CD 2
       uses: azure/CLI@v1
       with:
         inlineScript: |
-          az deployment sub create -f ./azmonitor-metricalert-and-actiongroup/main.bicep -l australiaeast
+          az deployment sub create -f ./azmonitor-metricalert-and-actiongroup/main.bicep -l australiaeast -o none
 
   Bicep-CD-NONPROD:
     needs: Bicep-CD-DEVTEST
@@ -39,9 +39,9 @@ jobs:
       uses: azure/CLI@v1
       with:
         inlineScript: |
-          az deployment sub create -f ./azmonitor-agent-and-dcr-association/main.bicep -l australiaeast --parameters assignmentIdentityLocation=australiaeast dcrResourceID=123456789
+          az deployment sub create -f ./azmonitor-agent-and-dcr-association/main.bicep -l australiaeast -p assignmentIdentityLocation=australiaeast dcrResourceID=123456789 -o none
     - name: Bicep CD 2
       uses: azure/CLI@v1
       with:
         inlineScript: |
-          az deployment sub create -f ./azmonitor-metricalert-and-actiongroup/main.bicep -l australiaeast
+          az deployment sub create -f ./azmonitor-metricalert-and-actiongroup/main.bicep -l australiaeast -o none
