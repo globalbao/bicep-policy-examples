@@ -41,4 +41,4 @@ az deployment sub create -f ./main.bicep -l australiaeast
 az policy state trigger-scan
 ```
 
-> Note: Bicep role assignments for new service principals (SP) created by policy assignments will sometimes fail to find the new SP upon 1st run (even though a dependency exists between the resources). This role assignment failure will not reoccur upon a 2nd run of the main.bicep file.
+> Note regarding Resources with dependencies on other resources e.g. Bicep role assignments for new service principals (SP) created by policy assignments will sometimes fail to find the new SP upon 1st run (even though a dependency exists between the resources). This role assignment failure will not reoccur upon a 2nd run of the main.bicep file. The same can apply for policy assignments, policy initiatives, and policy definitions.

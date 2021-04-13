@@ -18,7 +18,13 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS_DEVTEST }}
-    - name: Bicep CD
+    - name: Bicep CD 1
+      continue-on-error: true
+      uses: azure/CLI@v1
+      with:
+        inlineScript: |
+          az deployment sub create -n devtest-bicep-cd -f ./main.bicep -l australiaeast -o none
+    - name: Bicep CD 2
       uses: azure/CLI@v1
       with:
         inlineScript: |
@@ -33,7 +39,13 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS_NONPROD }}
-    - name: Bicep CD
+    - name: Bicep CD 1
+      continue-on-error: true
+      uses: azure/CLI@v1
+      with:
+        inlineScript: |
+          az deployment sub create -n nonprod-bicep-cd -f ./main.bicep -l australiaeast -o none
+    - name: Bicep CD 2
       uses: azure/CLI@v1
       with:
         inlineScript: |
@@ -48,7 +60,13 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS_PROD }}
-    - name: Bicep CD
+    - name: Bicep CD 1
+      continue-on-error: true
+      uses: azure/CLI@v1
+      with:
+        inlineScript: |
+          az deployment sub create -n prod-bicep-cd -f ./main.bicep -l australiaeast -o none
+    - name: Bicep CD 2
       uses: azure/CLI@v1
       with:
         inlineScript: |
