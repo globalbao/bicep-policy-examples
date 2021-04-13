@@ -1,4 +1,4 @@
-![RepoLogo](docs/BicepPolicyExamples.png "Bicep Policy Examples")
+![RepoLogo](x_docs/BicepPolicyExamples.png "Bicep Policy Examples")
 
 [![Bicep-CI](https://github.com/globalbao/bicep-policy-examples/actions/workflows/Bicep-CI.yml/badge.svg)](https://github.com/globalbao/bicep-policy-examples/actions/workflows/Bicep-CI.yml) [![Bicep-CD](https://github.com/globalbao/bicep-policy-examples/actions/workflows/Bicep-CD.yml/badge.svg)](https://github.com/globalbao/bicep-policy-examples/actions/workflows/Bicep-CD.yml)
 
