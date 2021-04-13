@@ -25,12 +25,12 @@ jobs:
         inlineScript: |
           az deployment sub create -n devtest-bicep-cd -f ./main.bicep -l australiaeast -o none
     - name: Sleep for 30s
-      if: ${{ failure() }}
+      if: ${{ steps.bicepCD.outcome == 'failure'  && steps.bicepCD.conclusion == 'success' }}
       uses: juliangruber/sleep-action@v1
       with:
         time: 30s
     - name: Bicep CD Retry
-      if: ${{ failure() }}
+      if: ${{ steps.bicepCD.outcome == 'failure'  && steps.bicepCD.conclusion == 'success' }}
       uses: azure/CLI@v1
       with:
         inlineScript: |
@@ -46,18 +46,19 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS_NONPROD }}
     - name: Bicep CD
+      id: bicepCD
       continue-on-error: true
       uses: azure/CLI@v1
       with:
         inlineScript: |
           az deployment sub create -n nonprod-bicep-cd -f ./main.bicep -l australiaeast -o none
     - name: Sleep for 30s
-      if: ${{ failure() }}
+      if: ${{ steps.bicepCD.outcome == 'failure'  && steps.bicepCD.conclusion == 'success' }}
       uses: juliangruber/sleep-action@v1
       with:
         time: 30s
     - name: Bicep CD Retry
-      if: ${{ failure() }}
+      if: ${{ steps.bicepCD.outcome == 'failure'  && steps.bicepCD.conclusion == 'success' }}
       uses: azure/CLI@v1
       with:
         inlineScript: |
@@ -79,12 +80,12 @@ jobs:
         inlineScript: |
           az deployment sub create -n prod-bicep-cd -f ./main.bicep -l australiaeast -o none
     - name: Sleep for 30s
-      if: ${{ failure() }}
+      if: ${{ steps.bicepCD.outcome == 'failure'  && steps.bicepCD.conclusion == 'success' }}
       uses: juliangruber/sleep-action@v1
       with:
         time: 30s
     - name: Bicep CD Retry
-      if: ${{ failure() }}
+      if: ${{ steps.bicepCD.outcome == 'failure'  && steps.bicepCD.conclusion == 'success' }}
       uses: azure/CLI@v1
       with:
         inlineScript: |
