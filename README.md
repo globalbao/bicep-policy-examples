@@ -115,6 +115,7 @@ jobs:
       with:
         inlineScript: |
           az deployment sub create -n devtest-bicep-cd -f ./main.bicep -l australiaeast -o none
+
   NONPROD-BICEP-CD:
     needs: DEVTEST-BICEP-CD
     runs-on: ubuntu-latest
@@ -142,6 +143,7 @@ jobs:
       with:
         inlineScript: |
           az deployment sub create -n nonprod-bicep-cd -f ./main.bicep -l australiaeast -o none
+
   PROD-BICEP-CD:
     needs: NONPROD-BICEP-CD
     runs-on: ubuntu-latest
