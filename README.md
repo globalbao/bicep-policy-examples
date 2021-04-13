@@ -28,7 +28,7 @@ Learning resources :books:
 
 ### Example Deployment Steps
 
-```
+```s
 # optional step to view the JSON/ARM template
 az bicep build -f ./main.bicep
 
