@@ -18,16 +18,11 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS_DEVTEST }}
-    - name: Bicep CD 1
+    - name: Bicep CD
       uses: azure/CLI@v1
       with:
         inlineScript: |
-          az deployment sub create -n devtest-bicep-cd1 -f ./azmonitor-agent-and-dcr-association/main.bicep -l australiaeast -p assignmentIdentityLocation=australiaeast dcrResourceID=123456789 -o none
-    - name: Bicep CD 2
-      uses: azure/CLI@v1
-      with:
-        inlineScript: |
-          az deployment sub create -n devtest-bicep-cd2 -f ./azmonitor-metricalert-and-actiongroup/main.bicep -l australiaeast -o none
+          az deployment sub create -n devtest-bicep-cd -f ./main.bicep -o none
 
   NONPROD-BICEP-CD:
     needs: DEVTEST-BICEP-CD
@@ -38,16 +33,11 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS_NONPROD }}
-    - name: Bicep CD 1
+    - name: Bicep CD
       uses: azure/CLI@v1
       with:
         inlineScript: |
-          az deployment sub create -n nonprod-bicep-cd1 -f ./azmonitor-agent-and-dcr-association/main.bicep -l australiaeast -p assignmentIdentityLocation=australiaeast dcrResourceID=123456789 -o none
-    - name: Bicep CD 2
-      uses: azure/CLI@v1
-      with:
-        inlineScript: |
-          az deployment sub create -n nonprod-bicep-cd2 -f ./azmonitor-metricalert-and-actiongroup/main.bicep -l australiaeast -o none
+          az deployment sub create -n nonprod-bicep-cd -f ./main.bicep -o none
 
   PROD-BICEP-CD:
     needs: NONPROD-BICEP-CD
@@ -58,13 +48,8 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS_PROD }}
-    - name: Bicep CD 1
+    - name: Bicep CD
       uses: azure/CLI@v1
       with:
         inlineScript: |
-          az deployment sub create -n prod-bicep-cd1 -f ./azmonitor-agent-and-dcr-association/main.bicep -l australiaeast -p assignmentIdentityLocation=australiaeast dcrResourceID=123456789 -o none
-    - name: Bicep CD 2
-      uses: azure/CLI@v1
-      with:
-        inlineScript: |
-          az deployment sub create -n prod-bicep-cd2 -f ./azmonitor-metricalert-and-actiongroup/main.bicep -l australiaeast -o none
+          az deployment sub create -n prod-bicep-cd -f ./main.bicep -o none

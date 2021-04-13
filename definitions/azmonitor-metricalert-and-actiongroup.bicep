@@ -1,42 +1,28 @@
 targetScope = 'subscription'
 
 // PARAMETERS   
+param policySource string = 'Bicep'
+param policyCategory string = 'Custom'
 param actionGroupName string
 param actionGroupRG string
-param actionGroupId string
-param metricAlertResourceNamespace string
-param metricAlertName string
-param metricAlertDimension1 string
-param metricAlertDimension2 string
-param metricAlertDimension3 string
-param metricAlertDescription string
-param metricAlertSeverity string
-param metricAlertEnabled string
-param metricAlertEvaluationFrequency string
-param metricAlertWindowSize string
-param metricAlertSensitivity string
-param metricAlertOperator string
-param metricAlertTimeAggregation string
-param metricAlertCriterionType string
-param metricAlertAutoMitigate string
+param actionGroupID string
 
 // VARIABLES
-var policyDefCategory = 'Custom'
-var policySource = 'Bicep'
 
 // OUTPUTS
-output bicepExampleInitiativeId string = bicepExampleInitiative.id
+output policyID string = policy.id
+output policyDisplayName string = policy.properties.displayName
 
 // RESOURCES
-resource bicepExampleDINEpolicy 'Microsoft.Authorization/policyDefinitions@2020-09-01' = {
-    name: 'bicepExampleDINEpolicy'
+resource policy 'Microsoft.Authorization/policyDefinitions@2020-09-01' = {
+    name: 'deployMetricAlertLB_dipAvailability'
     properties: {
-        displayName: 'DINE metric alert to Load Balancer for dipAvailability'
+        displayName: 'Deploy metric alert to Load Balancer for dipAvailability'
         description: 'DeployIfNotExists a metric alert to Load Balancers for dipAvailability (Average Load Balancer health probe status per time duration)'
         policyType: 'Custom'
         mode: 'All'
         metadata: {
-            category: policyDefCategory
+            category: policyCategory
             source: policySource
             version: '0.1.0'
         }
@@ -46,7 +32,7 @@ resource bicepExampleDINEpolicy 'Microsoft.Authorization/policyDefinitions@2020-
                 allOf: [
                     {
                         field: 'type'
-                        equals: metricAlertResourceNamespace
+                        equals: 'Microsoft.Network/loadBalancers'
                     }
                     {
                         field: 'Microsoft.Network/loadBalancers/sku.name'
@@ -65,15 +51,15 @@ resource bicepExampleDINEpolicy 'Microsoft.Authorization/policyDefinitions@2020-
                         allOf: [
                             {
                                 field: 'Microsoft.Insights/metricAlerts/criteria.Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria.allOf[*].metricNamespace'
-                                equals: metricAlertResourceNamespace
+                                equals: 'Microsoft.Network/loadBalancers'
                             }
                             {
                                 field: 'Microsoft.Insights/metricAlerts/criteria.Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria.allOf[*].metricName'
-                                equals: metricAlertName
+                                equals: 'DipAvailability'
                             }
                             {
                                 field: 'Microsoft.Insights/metricalerts/scopes[*]'
-                                equals: '[concat(subscription().id, \'/resourceGroups/\', resourceGroup().name, \'/providers/${metricAlertResourceNamespace}/\', field(\'fullName\'))]'
+                                equals: '[concat(subscription().id, \'/resourceGroups/\', resourceGroup().name, \'/providers/Microsoft.Network/loadBalancers/\', field(\'fullName\'))]'
                             }
                         ]
                     }
@@ -132,64 +118,64 @@ resource bicepExampleDINEpolicy 'Microsoft.Authorization/policyDefinitions@2020-
                                     {
                                         type: 'Microsoft.Insights/metricAlerts'
                                         apiVersion: '2018-03-01'
-                                        name: '[concat(parameters(\'resourceName\'), \'-${metricAlertName}\')]'
+                                        name: '[concat(parameters(\'resourceName\'), \'-DipAvailability\')]'
                                         location: 'global'
                                         properties: {
-                                            description: metricAlertDescription
-                                            severity: metricAlertSeverity
-                                            enabled: metricAlertEnabled
+                                            description: 'Average Load Balancer health probe status per time duration'
+                                            severity: '2'
+                                            enabled: 'true'
                                             scopes: [
                                                 '[parameters(\'resourceId\')]'
                                             ]
-                                            evaluationFrequency: metricAlertEvaluationFrequency
-                                            windowSize: metricAlertWindowSize
+                                            evaluationFrequency: 'PT15M'
+                                            windowSize: 'PT1H'
                                             criteria: {
                                                 allOf: [
                                                     {
-                                                        alertSensitivity: metricAlertSensitivity
+                                                        alertSensitivity: 'Medium'
                                                         failingPeriods: {
                                                             numberOfEvaluationPeriods: '2'
                                                             minFailingPeriodsToAlert: '1'
                                                         }
                                                         name: 'Metric1'
-                                                        metricNamespace: metricAlertResourceNamespace
-                                                        metricName: metricAlertName
+                                                        metricNamespace: 'Microsoft.Network/loadBalancers'
+                                                        metricName: 'DipAvailability'
                                                         dimensions: [
                                                             {
-                                                                name: metricAlertDimension1
+                                                                name: 'ProtocolType'
                                                                 operator: 'Include'
                                                                 values: [
                                                                     '*'
                                                                 ]
                                                             }
                                                             {
-                                                                name: metricAlertDimension2
+                                                                name: 'FrontendIPAddress'
                                                                 operator: 'Include'
                                                                 values: [
                                                                     '*'
                                                                 ]
                                                             }
                                                             {
-                                                                name: metricAlertDimension3
+                                                                name: 'BackendIPAddress'
                                                                 operator: 'Include'
                                                                 values: [
                                                                     '*'
                                                                 ]
                                                             }
                                                         ]
-                                                        operator: metricAlertOperator
-                                                        timeAggregation: metricAlertTimeAggregation
-                                                        criterionType: metricAlertCriterionType
+                                                        operator: 'LessThan'
+                                                        timeAggregation: 'Average'
+                                                        criterionType: 'DynamicThresholdCriterion'
                                                     }
                                                 ]
                                                 'odata.type': 'Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria'
                                             }
-                                            autoMitigate: metricAlertAutoMitigate
-                                            targetResourceType: metricAlertResourceNamespace
+                                            autoMitigate: 'true'
+                                            targetResourceType: 'Microsoft.Network/loadBalancers'
                                             targetResourceRegion: '[parameters(\'resourceLocation\')]'
                                             actions: [
                                                 {
-                                                    actionGroupId: actionGroupId
+                                                    actionGroupId: actionGroupID
                                                     webHookProperties: {}
                                                 }
                                             ]
@@ -214,7 +200,7 @@ resource bicepExampleDINEpolicy 'Microsoft.Authorization/policyDefinitions@2020-
                                     value: actionGroupRG
                                 }
                                 actionGroupID: {
-                                    value: actionGroupId
+                                    value: actionGroupID
                                 }
                             }
                         }
@@ -222,26 +208,5 @@ resource bicepExampleDINEpolicy 'Microsoft.Authorization/policyDefinitions@2020-
                 }
             }
         }
-    }
-}
-
-resource bicepExampleInitiative 'Microsoft.Authorization/policySetDefinitions@2020-09-01' = {
-    name: 'bicepExampleInitiative'
-    properties: {
-        policyType: 'Custom'
-        displayName: 'Bicep Example Initiative'
-        description: 'Bicep Example Initiative'
-        metadata: {
-            category: policyDefCategory
-            source: policySource
-            version: '0.1.0'
-        }
-        parameters: {}
-        policyDefinitions: [
-            {
-                policyDefinitionId: bicepExampleDINEpolicy.id
-                parameters: {}
-            }
-        ]
     }
 }

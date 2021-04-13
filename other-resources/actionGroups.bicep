@@ -9,7 +9,7 @@ param actionGroupEmail string
 param actionGroupAlertSchema bool
 
 // OUTPUTS
-output actionGroupId string = actionGroup.id
+output actionGroupID string = actionGroup.id
 output actionGroupName string = actionGroup.name
 
 // RESOURCES

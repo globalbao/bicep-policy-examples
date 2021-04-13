@@ -1,22 +1,19 @@
 targetScope = 'subscription'
 
 // PARAMETERS
+param policySource string = 'Bicep'
+param policyCategory string = 'Custom'
 param dcrResourceID string
 
 // VARIABLES
-var policyDefCategory = 'Custom'
-var policySource = 'Bicep'
-var vmExtensionName = 'AzureMonitorWindowsAgent'
-var vmExtensionPublisher = 'Microsoft.Azure.Monitor'
-var vmExtensionType = 'AzureMonitorWindowsAgent'
-var vmExtensionTypeHandlerVersion = '1.0'
 var dcrAssociationName = 'association1'
 
 // OUTPUTS
-output monitoringGovernanceId string = monitoringGovernance.id
+output policyID string = policy.id
+output policyDisplayName string = policy.properties.displayName
 
 // RESOURCES
-resource deployAzureMonitorAgentWindowsDCR 'Microsoft.Authorization/policyDefinitions@2020-09-01' = {
+resource policy 'Microsoft.Authorization/policyDefinitions@2020-09-01' = {
     name: 'deployAzureMonitorAgentWindowsDCR'
     properties: {
         displayName: 'Deploy new Azure Monitor Agent to Windows VMs and tie to DCR'
@@ -24,7 +21,7 @@ resource deployAzureMonitorAgentWindowsDCR 'Microsoft.Authorization/policyDefini
         mode: 'All'
         description: 'Deploy new Azure Monitor Agent to Windows VMs and tie to DCR'
         metadata: {
-            category: policyDefCategory
+            category: policyCategory
             source: policySource
             version: '0.1.0'
         }
@@ -262,14 +259,14 @@ resource deployAzureMonitorAgentWindowsDCR 'Microsoft.Authorization/policyDefini
                                 }
                                 resources: [
                                     {
-                                        name: '[concat(parameters(\'resourceName\'), \'/${vmExtensionName}\')]'
+                                        name: '[concat(parameters(\'resourceName\'), \'/AzureMonitorWindowsAgent\')]'
                                         type: 'Microsoft.Compute/virtualMachines/extensions'
                                         location: '[parameters(\'resourceLocation\')]'
                                         apiVersion: '2018-06-01'
                                         properties: {
-                                            publisher: vmExtensionPublisher
-                                            type: vmExtensionType
-                                            typeHandlerVersion: vmExtensionTypeHandlerVersion
+                                            publisher: 'Microsoft.Azure.Monitor'
+                                            type: 'AzureMonitorWindowsAgent'
+                                            typeHandlerVersion: '1.0'
                                             autoUpgradeMinorVersion: 'true'
                                         }
                                     }
@@ -300,26 +297,5 @@ resource deployAzureMonitorAgentWindowsDCR 'Microsoft.Authorization/policyDefini
                 }
             }
         }
-    }
-}
-
-resource monitoringGovernance 'Microsoft.Authorization/policySetDefinitions@2020-09-01' = {
-    name: 'monitoringGovernance'
-    properties: {
-        policyType: 'Custom'
-        displayName: 'Monitoring Governance Initiative'
-        description: 'Monitoring Governance Initiative'
-        metadata: {
-            category: policyDefCategory
-            source: policySource
-            version: '0.1.0'
-        }
-        parameters: {}
-        policyDefinitions: [
-            {
-                policyDefinitionId: deployAzureMonitorAgentWindowsDCR.id
-                parameters: {}
-            }
-        ]
     }
 }

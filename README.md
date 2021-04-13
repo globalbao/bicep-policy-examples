@@ -1,4 +1,4 @@
-![RepoLogo](BicepPolicyExamples.png "Bicep Policy Examples")
+![RepoLogo](docs/BicepPolicyExamples.png "Bicep Policy Examples")
 
 [![Bicep-CI](https://github.com/globalbao/bicep-policy-examples/actions/workflows/Bicep-CI.yml/badge.svg)](https://github.com/globalbao/bicep-policy-examples/actions/workflows/Bicep-CI.yml) [![Bicep-CD](https://github.com/globalbao/bicep-policy-examples/actions/workflows/Bicep-CD.yml/badge.svg)](https://github.com/globalbao/bicep-policy-examples/actions/workflows/Bicep-CD.yml)
 
@@ -19,3 +19,24 @@ Learning resources :books:
 ## Blogs that might interest you :pencil:
 
 * [Azure Spring Clean: DINE to Automate your Monitoring Governance with Azure Monitor Metric Alerts](https://jloudon.com/cloud/Azure-Spring-Clean-DINE-to-Automate-your-Monitoring-Governance-with-Azure-Monitor-Metric-Alerts/)
+
+
+### Authored & Tested with
+
+* [azure-cli](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) version 2.20.0
+* bicep cli version 0.3.1 (d0f5c9b164)
+* [bicep](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) 0.3.1 vscode extension
+
+### Example Deployment Steps
+
+```
+# optional step to view the JSON/ARM template
+az bicep build -f ./main.bicep
+
+# required steps
+az login
+az deployment sub create -f ./main.bicep -l australiaeast
+
+# optional step to trigger a subscription-level policy compliance scan 
+az policy state trigger-scan
+```
