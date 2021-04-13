@@ -22,7 +22,7 @@ jobs:
       uses: azure/CLI@v1
       with:
         inlineScript: |
-          az deployment sub create -n devtest-bicep-cd -f ./main.bicep -o none
+          az deployment sub create -n devtest-bicep-cd -f ./main.bicep -l australiaeast -o none
 
   NONPROD-BICEP-CD:
     needs: DEVTEST-BICEP-CD
@@ -37,7 +37,7 @@ jobs:
       uses: azure/CLI@v1
       with:
         inlineScript: |
-          az deployment sub create -n nonprod-bicep-cd -f ./main.bicep -o none
+          az deployment sub create -n nonprod-bicep-cd -f ./main.bicep -l australiaeast -o none
 
   PROD-BICEP-CD:
     needs: NONPROD-BICEP-CD
@@ -52,4 +52,4 @@ jobs:
       uses: azure/CLI@v1
       with:
         inlineScript: |
-          az deployment sub create -n prod-bicep-cd -f ./main.bicep -o none
+          az deployment sub create -n prod-bicep-cd -f ./main.bicep -l australiaeast -o none
