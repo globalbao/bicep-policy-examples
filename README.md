@@ -5,21 +5,6 @@
 Collection of Azure Policy examples using Bicep :muscle: by @jesseloudon
 > *Bicep + Policy icons are from Microsoft*
 
-Get in touch :octocat:
-
-* Twitter: [@coder_au](https://twitter.com/coder_au)
-* LinkedIn: [@JesseLoudon](https://www.linkedin.com/in/jesseloudon/)
-* Web: [jloudon.com](https://jloudon.com)
-* GitHub: [@JesseLoudon](https://github.com/jesseloudon)
-
-Learning resources :books:
-* [https://github.com/Azure/bicep](https://github.com/Azure/bicep)
-* [https://docs.microsoft.com/en-us/azure/governance/policy/overview](https://docs.microsoft.com/en-us/azure/governance/policy/overview)
-
-## Blogs that might interest you :pencil:
-
-* [Azure Spring Clean: DINE to Automate your Monitoring Governance with Azure Monitor Metric Alerts](https://jloudon.com/cloud/Azure-Spring-Clean-DINE-to-Automate-your-Monitoring-Governance-with-Azure-Monitor-Metric-Alerts/)
-
 ### Authored & Tested with
 
 * [azure-cli](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) version 2.20.0
@@ -172,3 +157,18 @@ jobs:
         inlineScript: |
           az deployment sub create -n prod-bicep-cd -f ./main.bicep -l australiaeast -o none
 ```
+
+Get in touch :octocat:
+
+* Twitter: [@coder_au](https://twitter.com/coder_au)
+* LinkedIn: [@JesseLoudon](https://www.linkedin.com/in/jesseloudon/)
+* Web: [jloudon.com](https://jloudon.com)
+* GitHub: [@JesseLoudon](https://github.com/jesseloudon)
+
+Learning resources :books:
+* [https://github.com/Azure/bicep](https://github.com/Azure/bicep)
+* [https://docs.microsoft.com/en-us/azure/governance/policy/overview](https://docs.microsoft.com/en-us/azure/governance/policy/overview)
+
+## Blogs that might interest you :pencil:
+
+* [Azure Spring Clean: DINE to Automate your Monitoring Governance with Azure Monitor Metric Alerts](https://jloudon.com/cloud/Azure-Spring-Clean-DINE-to-Automate-your-Monitoring-Governance-with-Azure-Monitor-Metric-Alerts/)
