@@ -29,6 +29,9 @@ module rg './other-resources/resourceGroups.bicep' = {
 }
 
 module ag './other-resources/actionGroups.bicep' = {
+  dependsOn: [
+    rg
+  ]
   scope: resourceGroup(resourceGroupName)
   name: 'actionGroups'
   params: {
@@ -65,6 +68,9 @@ module definitions './definitions/definitions.bicep' = {
 
 module initiatives './initiatives/initiatives.bicep' = {
   name: 'initiatives'
+  dependsOn: [
+    definitions
+  ]
   params: {
     policySource: policySource
     policyCategory: policyCategory
@@ -80,6 +86,9 @@ module initiatives './initiatives/initiatives.bicep' = {
 
 module assignments './assignments/assignments.bicep' = {
   name: 'assignments'
+  dependsOn: [
+    initiatives
+  ]
   params: {
     policySource: policySource
     assignmentIdentityLocation: assignmentIdentityLocation
