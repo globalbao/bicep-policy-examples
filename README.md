@@ -24,7 +24,7 @@ Learning resources :books:
 ### Authored & Tested with
 
 * [azure-cli](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) version 2.20.0
-* bicep cli version 0.3.1 (d0f5c9b164)
+* bicep cli version 0.3.255 (589f0375df)
 * [bicep](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) 0.3.1 vscode extension
 
 ### Example Deployment Steps
