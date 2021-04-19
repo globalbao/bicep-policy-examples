@@ -7,14 +7,14 @@ param actionGroupName string = 'BicepExampleAG'
 param actionGroupEnabled bool = true
 param actionGroupShortName string = 'bicepag'
 param actionGroupEmailName string = 'jloudon'
-param actionGroupEmail string = 'jesse.loudon@lab3.com.au'
+param actionGroupEmail string = 'testemail@mail.com'
 param actionGroupAlertSchema bool = true
 param assignmentEnforcementMode string = 'Default'
 param assignmentIdentityLocation string = 'australiaeast'
 param dcrResourceID string = '0123456789'
-param policySource string = 'https://github.com/globalbao/bicep-policy-examples'
+param policySource string = 'bicep-policy-examples'
 param policyCategory string = 'Custom'
-param nonComplianceMessageContactEmail string = 'jesse.loudon@lab3.com.au'
+param nonComplianceMessageContactEmail string = 'testemail@mail.com'
 param mandatoryTag1Key string = 'CostCentre'
 param mandatoryTag1Value string = '123456'
 
