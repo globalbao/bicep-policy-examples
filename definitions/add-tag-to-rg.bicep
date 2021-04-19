@@ -14,9 +14,9 @@ output policyDisplayName string = policy.properties.displayName
 
 // RESOURCES
 resource policy 'Microsoft.Authorization/policyDefinitions@2020-09-01' = {
-  name: 'addTagToRG'
+  name: 'addTagToRG_${mandatoryTag1Key}'
   properties: {
-    displayName: 'Add tag to resource group'
+    displayName: 'Add tag ${mandatoryTag1Key} to resource group'
     policyType: 'Custom'
     mode: 'All'
     description: 'Adds the mandatory tag key when any resource group missing this tag is created or updated. Existing resource groups can be remediated by triggering a remediation task. If the tag exists with a different value it will not be changed.'
